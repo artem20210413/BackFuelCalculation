@@ -1,0 +1,237 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Fuel",
+        "description": "Fuel calculation application",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://fuel.tishchenko.loc.ua/api",
+            "description": "API"
+        }
+    ],
+    "paths": {
+        "/login": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Sign in",
+                "description": "Login by name, password",
+                "operationId": "authLogin",
+                "requestBody": {
+                    "description": "User credentials",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "password",
+                                    "device_name"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "email@gmail.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "password"
+                                    },
+                                    "device_name": {
+                                        "type": "string",
+                                        "example": "mobile_device"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Login successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "token": {
+                                            "description": "Access token",
+                                            "type": "string",
+                                            "example": "4|Rkkm6UGqW596clIYeaZoGn6Znb5txkltZOpGmOme88a7ebf6"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/register": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "User registration",
+                "description": "Register a new user",
+                "operationId": "authRegister",
+                "requestBody": {
+                    "description": "User registration details",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "email",
+                                    "device_name",
+                                    "password",
+                                    "password_confirmation"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "John Doe"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "email@gmail.com"
+                                    },
+                                    "device_name": {
+                                        "type": "string",
+                                        "example": "mobile_device"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "password"
+                                    },
+                                    "password_confirmation": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "password"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "User registered successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "token": {
+                                            "description": "Access token",
+                                            "type": "string",
+                                            "example": "4|Rkkm6UGqW596clIYeaZoGn6Znb5txkltZOpGmOme88a7ebf6"
+                                        },
+                                        "user": {
+                                            "format": "array",
+                                            "example": {
+                                                "name": "John Doe",
+                                                "email": "email3@gmail.com",
+                                                "updated_at": "2023-12-23T20:41:01.000000Z",
+                                                "created_at": "2023-12-23T20:41:01.000000Z",
+                                                "id": 4
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "description": "Unprocessable Entity",
+                                            "type": "string"
+                                        },
+                                        "message": {
+                                            "description": "The given data was invalid.",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/user": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "UserIndex",
+                "description": "UserIndex Description",
+                "operationId": "UserIndex",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "user": {
+                                            "format": "array",
+                                            "example": {
+                                                "name": "John Doe",
+                                                "email": "email3@gmail.com",
+                                                "updated_at": "2023-12-23T20:41:01.000000Z",
+                                                "created_at": "2023-12-23T20:41:01.000000Z",
+                                                "id": 4
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "sanctum": {
+                "type": "http",
+                "scheme": "bearer",
+                "description": "[Log in and get a token at this url ](#/Auth/authLogin) <br>example token: a1|s1sBKlKKVmHIjBNloa2jiL7qtZAX0aG3LpbQdPK0<br>"
+            }
+        }
+    }
+}
