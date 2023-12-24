@@ -32,11 +32,11 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/login/google/callback', [AuthGoogleController::class, 'handleGoogleCallback']);
 });
 
-Route::get('/gas-station', [GasStationController::class, 'list']);
-Route::get('/movement-type', [MovementTypeController::class, 'list']);
-Route::get('/fuel-type', [FuelTypeController::class, 'list']);
-
 Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get('/gas-station', [GasStationController::class, 'list']);
+    Route::get('/movement-type', [MovementTypeController::class, 'list']);
+    Route::get('/fuel-type', [FuelTypeController::class, 'list']);
+
     Route::post('/fuel-statistic', [FuelStatisticController::class, 'save']);
     Route::get('/fuel-statistic', [FuelStatisticController::class, 'list']);
 
