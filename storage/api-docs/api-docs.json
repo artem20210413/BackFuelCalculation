@@ -12,6 +12,159 @@
         }
     ],
     "paths": {
+        "/fuel-type": {
+            "get": {
+                "tags": [
+                    "Fuel Types"
+                ],
+                "summary": "Get a list of fuel types",
+                "description": "Retrieve a list of available fuel types",
+                "operationId": "getFuelTypes",
+                "parameters": [
+                    {
+                        "name": "gasStation",
+                        "in": "query",
+                        "description": "Alias of the gas station (optional)",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": "wog"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of fuel types",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "format": "array",
+                                            "example": [
+                                                {
+                                                    "alias": "gas",
+                                                    "name": "газ",
+                                                    "gas_station_alias": null
+                                                },
+                                                {
+                                                    "alias": "95",
+                                                    "name": "95",
+                                                    "gas_station_alias": null
+                                                },
+                                                {
+                                                    "alias": "92",
+                                                    "name": "92",
+                                                    "gas_station_alias": null
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/gas-station": {
+            "get": {
+                "tags": [
+                    "Gas Stations"
+                ],
+                "summary": "Get available gas stations",
+                "description": "Retrieve a list of available gas stations",
+                "operationId": "getGasStations",
+                "responses": {
+                    "200": {
+                        "description": "List of available gas stations",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "format": "array",
+                                            "example": [
+                                                {
+                                                    "alias": "wog",
+                                                    "name": "WOG"
+                                                },
+                                                {
+                                                    "alias": "shell",
+                                                    "name": "Shell"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/movement-type": {
+            "get": {
+                "tags": [
+                    "Movement Types"
+                ],
+                "summary": "Get a list of movement types",
+                "description": "Retrieve a list of available movement types",
+                "operationId": "getMovementTypes",
+                "responses": {
+                    "200": {
+                        "description": "List of movement types",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "format": "array",
+                                            "example": [
+                                                {
+                                                    "alias": "city_with_traffic_jams",
+                                                    "name": "Місто з пробками"
+                                                },
+                                                {
+                                                    "alias": "city",
+                                                    "name": "Місто"
+                                                },
+                                                {
+                                                    "alias": "track",
+                                                    "name": "Траса"
+                                                },
+                                                {
+                                                    "alias": "city_and_highway",
+                                                    "name": "Місто та траса"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
         "/login": {
             "post": {
                 "tags": [
@@ -70,12 +223,7 @@
                             }
                         }
                     }
-                },
-                "security": [
-                    {
-                        "sanctum": []
-                    }
-                ]
+                }
             }
         },
         "/register": {
@@ -156,33 +304,8 @@
                                 }
                             }
                         }
-                    },
-                    "422": {
-                        "description": "Validation error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "error": {
-                                            "description": "Unprocessable Entity",
-                                            "type": "string"
-                                        },
-                                        "message": {
-                                            "description": "The given data was invalid.",
-                                            "type": "string"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
                     }
-                },
-                "security": [
-                    {
-                        "sanctum": []
-                    }
-                ]
+                }
             }
         },
         "/user": {

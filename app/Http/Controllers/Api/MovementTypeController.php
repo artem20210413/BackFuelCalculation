@@ -15,6 +15,28 @@ use Illuminate\Support\Facades\Response;
 class MovementTypeController extends Controller
 {
 
+
+    /**
+     * @OA\Get(
+     *     path="/movement-type",
+     *     summary="Get a list of movement types",
+     *     description="Retrieve a list of available movement types",
+     *     operationId="getMovementTypes",
+     *     tags={"Movement Types"},
+     *     security={ {"sanctum": {} }},
+     *     @OA\Response(
+     *         response=200,
+     *         description="List of movement types",
+     *         @OA\JsonContent(
+     *
+     *      @OA\Property(format="array", property="data", example={
+     *           {"alias": "city_with_traffic_jams","name": "Місто з пробками"},{"alias": "city","name": "Місто"},{"alias": "track","name": "Траса"},{"alias": "city_and_highway","name": "Місто та траса"        }
+     *      })
+     *         )
+     *     ),
+     * )
+     */
+
     public function list(Request $request, MovementTypeService $service): JsonResponse
     {
         $movementType = $service->list();
