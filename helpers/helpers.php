@@ -1,12 +1,13 @@
 <?php
 
+use Illuminate\Http\Resources\Json\JsonResource;
+
 if (!function_exists('success')) {
     function success(mixed $data = [], int $status = 200): Illuminate\Http\JsonResponse
     {
-        return response()->json([
-//            'success' => true,
-            'data' => $data
-        ],$status);
+        $res['data'] = $data;
+
+        return response()->json($res, $status);
     }
 }
 

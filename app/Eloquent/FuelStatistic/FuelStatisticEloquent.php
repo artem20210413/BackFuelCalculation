@@ -8,6 +8,7 @@ use App\Services\FuelStatistic\FuelStatisticFilterDto;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Validation\ValidationException;
 
 class FuelStatisticEloquent extends Eloquent
@@ -45,12 +46,20 @@ class FuelStatisticEloquent extends Eloquent
      * @param FuelStatisticFilterDto $filter
      * @return Collection|FuelStatistic[]
      */
-    public static function list(FuelStatisticFilterDto $filter): Collection
+    public static function list(FuelStatisticFilterDto $filter): LengthAwarePaginator
     {
         $f = self::searchStart();
         $f = self::searchByUser($f, $filter->getUser());
 
-        return $f->get();
+        return self::paginate($f);
+    }
+
+
+    public static function paginate(Builder $builder): LengthAwarePaginator
+    {
+        $perPage = request()->get('perPage', 10);
+
+        return $builder->paginate($perPage);
     }
 
     /**

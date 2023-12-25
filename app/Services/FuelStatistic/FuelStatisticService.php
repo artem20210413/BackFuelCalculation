@@ -7,6 +7,7 @@ use App\Eloquent\FuelStatistic\FuelStatisticEloquent;
 use App\Models\FuelStatistic;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class FuelStatisticService
 {
@@ -23,7 +24,7 @@ class FuelStatisticService
      * @param FuelStatisticFilterDto $filter
      * @return Collection|FuelStatistic[]
      */
-    public function list(FuelStatisticFilterDto $filter): Collection
+    public function list(FuelStatisticFilterDto $filter): LengthAwarePaginator
     {
         return FuelStatisticEloquent::list($filter);
     }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Services\Math\FuelStatisticMath;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -16,8 +17,9 @@ class FuelStatisticResource extends JsonResource
     {
 //        return parent::toArray($request);
         $mathRound = config('options.math.round');
-        $fuelConsumption = $this->volume / $this->distance * 100;
-        $pricePerOne = $this->refill_amount / $this->volume;
+        $fuelConsumption = FuelStatisticMath::fuelConsumption($this->resource);
+        $pricePerOne = FuelStatisticMath::pricePerLiter($this->resource);
+
         return [
             'id' => $this->id,
             'distance' => $this->distance,
