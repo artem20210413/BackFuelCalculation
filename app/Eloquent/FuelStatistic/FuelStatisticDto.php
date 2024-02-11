@@ -4,6 +4,7 @@ namespace App\Eloquent\FuelStatistic;
 
 use App\Eloquent\EloquentDto;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
 
 class FuelStatisticDto extends EloquentDto
@@ -18,6 +19,7 @@ class FuelStatisticDto extends EloquentDto
     private ?float $trafficJamPercentage = null;
     private ?float $temperature = null;
     private ?string $description = null;
+    private ?Carbon $tankRefillTime = null;
 
     public function __construct(?FormRequest $request = null)
     {
@@ -35,7 +37,7 @@ class FuelStatisticDto extends EloquentDto
         $this->setTrafficJamPercentage($request->traffic_jam_percentage);
         $this->setTemperature($request->temperature);
         $this->setDescription($request->description);
-
+        $this->setTankRefillTime($request->tank_refill_time);
 
         return $this;
     }
@@ -199,6 +201,22 @@ class FuelStatisticDto extends EloquentDto
     public function setTemperature(?float $temperature): void
     {
         $this->temperature = $temperature;
+    }
+
+    /**
+     * @return Carbon|null
+     */
+    public function getTankRefillTime(): ?Carbon
+    {
+        return $this->tankRefillTime;
+    }
+
+    /**
+     * @param Carbon|null $tankRefillTime
+     */
+    public function setTankRefillTime(null|Carbon|string $tankRefillTime): void
+    {
+        $this->tankRefillTime = Carbon::parse($tankRefillTime);
     }
 
 }

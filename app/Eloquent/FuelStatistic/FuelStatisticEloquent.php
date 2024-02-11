@@ -37,6 +37,7 @@ class FuelStatisticEloquent extends Eloquent
         $fuelS->traffic_jam_percentage = $dto->getTrafficJamPercentage() ?? $fuelS->traffic_jam_percentage;
         $fuelS->temperature = $dto->getTemperature() ?? $fuelS->temperature;
         $fuelS->description = $dto->getDescription() ?? $fuelS->description;
+        $fuelS->tank_refill_time = $dto->getTankRefillTime() ?? $fuelS->tank_refill_time;
         $fuelS->save();
 
         return $fuelS->refresh();

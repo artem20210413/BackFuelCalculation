@@ -22,10 +22,11 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null description
  * @property Carbon created_at
  * @property Carbon updated_at
+ * @property Carbon tank_refill_time
  */
 class FuelStatistic extends Model
 {
     use HasFactory;
     protected $fillable = ['user_id', 'distance', 'volume', 'temperature', 'fuel_type_alias', 'gas_station_alias', 'movement_type_alias',
-        'refill_amount', 'traffic_jam_percentage', 'description'];
+        'refill_amount', 'traffic_jam_percentage', 'description', 'tank_refill_time'];
 }

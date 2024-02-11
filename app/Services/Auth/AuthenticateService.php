@@ -4,11 +4,9 @@ namespace App\Services\Auth;
 
 use App\Eloquent\User\UserEloquent;
 use App\Eloquent\User\UserEloquentDto;
-use App\Enum\EnumDeviceName;
-use App\Enum\EnumTokenAbilities;
-use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
-use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 
 class AuthenticateService
@@ -39,6 +37,18 @@ class AuthenticateService
             'token' => $token,
             'user' => $user,
         ];
+    }
+
+    public function logout(Request $request): void
+    {
+        $user = Auth::user();
+
+        // Отзыв текущего активного токена пользователя
+        $user->token()->revoke();
+//        $user = $request->user();
+        dd($user);
+//        // Отзыв текущего активного токена пользователя
+//        $user->token()->revoke();
     }
 
 }

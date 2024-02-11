@@ -32,6 +32,7 @@ class FuelStatisticRequest extends FormRequest
             'traffic_jam_percentage' => 'numeric',
             'temperature' => 'numeric',
             'description' => 'string',
+            'tank_refill_time' => 'date',
         ];
 
         if ($this->has('id')) {

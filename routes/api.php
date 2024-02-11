@@ -41,6 +41,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/fuel-statistic', [FuelStatisticController::class, 'list']);
 
     Route::get('/user', [AuthenticateController::class, 'user']);
+    Route::get('/logout', [AuthenticateController::class, 'logout']);
 });
 
 

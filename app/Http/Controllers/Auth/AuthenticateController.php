@@ -9,6 +9,7 @@ use App\Http\Requests\RegisterRequest;
 use App\Services\Auth\AuthenticateService;
 use App\Services\Auth\LoginDto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
 
 class AuthenticateController extends Controller
@@ -49,6 +50,20 @@ class AuthenticateController extends Controller
         return Response::json(['token' => $token]);
     }
 
+    public function logout(Request $request, AuthenticateService $service)
+    {
+        auth()->user()->currentAccessToken()->delete();
+//        Auth::logout();
+//        Auth::guard('web')->logout();
+//        Auth::guard('web')->user()->token()->revoke();
+//        $f = Auth::user()->token->revoke();
+//        $f = Auth::user()->api_token;;
+//            dd($f);
+
+
+//        Auth::user()->tokens()->delete();
+        return Response::json(['logout' => true]);
+    }
 
     /**
      * @OA\Post(
