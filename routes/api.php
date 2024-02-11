@@ -1,13 +1,11 @@
 <?php
 
-use App\Enum\EnumTokenAbilities;
 use App\Http\Controllers\Api\FuelStatisticController;
 use App\Http\Controllers\Api\FuelTypeController;
 use App\Http\Controllers\Api\GasStationController;
 use App\Http\Controllers\Api\MovementTypeController;
 use App\Http\Controllers\Auth\AuthenticateController;
 use App\Http\Controllers\Auth\AuthGoogleController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*

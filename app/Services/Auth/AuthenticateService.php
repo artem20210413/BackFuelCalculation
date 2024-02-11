@@ -39,16 +39,5 @@ class AuthenticateService
         ];
     }
 
-    public function logout(Request $request): void
-    {
-        $user = Auth::user();
-
-        // Отзыв текущего активного токена пользователя
-        $user->token()->revoke();
-//        $user = $request->user();
-        dd($user);
-//        // Отзыв текущего активного токена пользователя
-//        $user->token()->revoke();
-    }
 
 }

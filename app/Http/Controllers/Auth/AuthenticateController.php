@@ -49,7 +49,21 @@ class AuthenticateController extends Controller
 
         return Response::json(['token' => $token]);
     }
-
+    /**
+     * @OA\Get(
+     *     tags={"User"},
+     *     path="/logout",
+     *     summary="UserLogout",
+     *     description="logout",
+     *     operationId="UserLogout",
+     *     security={ {"sanctum": {} }},
+     * @OA\Response(
+     *     response="200",
+     *     description="success",
+     *      )
+     * )
+     * ),
+     */
     public function logout(Request $request, AuthenticateService $service)
     {
         auth()->user()->currentAccessToken()->delete();
