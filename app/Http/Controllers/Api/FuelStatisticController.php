@@ -35,7 +35,8 @@ class FuelStatisticController extends Controller
      *             @OA\Property(property="movement_type_alias", type="string", example="city_with_traffic_jams", description="Alias of the movement type"),
      *             @OA\Property(property="refill_amount", type="number", example=800.25, description="Amount spent on refill in the local currency"),
      *             @OA\Property(property="traffic_jam_percentage", type="number", example=75.3, description="Percentage of time spent in traffic jams"),
-     *             @OA\Property(property="description", type="string", example="description", description="Additional description or notes")
+     *             @OA\Property(property="description", type="string", example="description", description="Additional description or notes"),
+     *             @OA\Property(property="tank_refill_time", type="string", example="2024-02-18 15:25", description="format Y-m-d H:i:s. refueling date. Standard current time")
      *         )
      *     ),
      *     @OA\Response(
