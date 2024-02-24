@@ -9,6 +9,7 @@ use App\Enum\EnumTokenAbilities;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 
 class AuthenticateGoogleService
@@ -25,7 +26,7 @@ class AuthenticateGoogleService
             $userEloquentDto->setPassword($googleUser->token);
             $user = UserEloquent::register($userEloquentDto);
         }
-
+        Auth::login($user, true);// Аутентификация пользователя в сессии
         UserEloquent::updateGoogleUser($user, $googleUser);
 
         return $user;

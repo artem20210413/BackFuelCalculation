@@ -1,0 +1,27 @@
+body, p {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/*header {*/
+/*    height: 80px;*/
+/*    !*background-color: black;*!*/
+/*    flex-shrink: 0;*/
+/*}*/
+
+main {
+    /*background-color: blue;*/
+    flex-grow: 1;
+}
+
+footer {
+    height: 100px;
+    /*background-color: black;*/
+    flex-shrink: 0;
+}

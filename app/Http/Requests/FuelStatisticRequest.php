@@ -31,7 +31,7 @@ class FuelStatisticRequest extends FormRequest
             'refill_amount' => 'numeric',
             'traffic_jam_percentage' => 'numeric',
             'temperature' => 'numeric',
-            'description' => 'string',
+            'description' => 'nullable|string',
             'tank_refill_time' => 'date',
         ];
 
