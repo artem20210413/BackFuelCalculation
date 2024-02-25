@@ -9,11 +9,15 @@ class FuelStatisticMath
 
     static function fuelConsumption(FuelStatistic $fs): float
     {
+        if ($fs->volume === null) return 0.0;
+
         return $fs->volume / $fs->distance * 100;
     }
 
     static function pricePerLiter(FuelStatistic $fs): float
     {
+        if ($fs->volume === null) return 0.0;
+
         return $fs->refill_amount / $fs->volume;
     }
 
