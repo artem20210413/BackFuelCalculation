@@ -49,6 +49,6 @@ class AuthController
         $googleUser = Socialite::driver('google')->user();
         $service->authGoogle($googleUser);
 
-        return route('home'); // Перенаправление назад с сообщением об ошибке
+        return Redirect::route('home'); // Перенаправление назад с сообщением об ошибке
     }
 }
