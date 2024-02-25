@@ -27,7 +27,7 @@ class FuelStatisticController extends Controller
 
         $fuelStatistic = $service->save($dto);
 
-        return Redirect::back()->with(['success' => 'Saved']);
+        return Redirect::route('fuel-statistic-list')->with(['success' => 'Збережено']);
     }
 
     public function form()

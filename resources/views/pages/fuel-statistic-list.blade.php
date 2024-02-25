@@ -7,10 +7,14 @@
 
 @section('body')
 
-    {{--    @dump(json_decode($fuelStatistics->toJson()))--}}
+    @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
     <div class="container mt-4 mb-4">
         <div class="d-flex justify-content-between p-2">
-
             <h2>Статистика палива</h2>
             <button type="button" class="btn btn-primary"
                     onclick=" window.location.href = '{{ route('fuel-statistic-form') }}'">Додати

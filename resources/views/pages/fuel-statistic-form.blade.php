@@ -135,7 +135,7 @@
                 @enderror
             </div>
         </div>
-        <button class="w-100 btn btn-lg btn-primary mt-3" type="submit">Send</button>
+        <button class="w-100 btn btn-lg btn-primary mt-3" type="submit">Зберегти</button>
     </form>
 
 @endsection
