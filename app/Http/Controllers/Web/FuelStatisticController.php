@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Eloquent\FuelStatistic\FuelStatisticDto;
+use App\Eloquent\FuelStatistic\FuelStatisticEloquent;
 use App\Eloquent\FuelType\FuelTypeEloquent;
 use App\Eloquent\GasStation\GasStationEloquent;
 use App\Eloquent\MovementType\MovementTypeEloquent;
@@ -20,16 +21,16 @@ class FuelStatisticController extends Controller
 {
 
 
-    public function fuelStatisticFormSend(FuelStatisticRequest $request, FuelStatisticService $service)
+    public function formSend(FuelStatisticRequest $request, FuelStatisticService $service)
     {
         $dto = new FuelStatisticDto($request);
 
         $fuelStatistic = $service->save($dto);
 
-        return Redirect::back()->with(['success'=> 'Saved']);
+        return Redirect::back()->with(['success' => 'Saved']);
     }
 
-    public function fuelStatisticForm()
+    public function form()
     {
         $gasStations = GasStationEloquent::all();
         $fuelTypes = FuelTypeEloquent::all();
@@ -40,14 +41,12 @@ class FuelStatisticController extends Controller
         return view('pages.fuel-statistic-form', ['gasStations' => $gasStations, 'fuelTypes' => $fuelTypes, 'movementTypes' => $movementTypes]);
     }
 
-    public function list(Request $request, FuelStatisticService $service)
+    public function list(Request $request)
     {
-        $filterDto = new FuelStatisticFilterDto($request);
-        $fuelStatistic = $service->list($filterDto);
-        $fuelStatistic = FuelStatisticResource::collection($fuelStatistic);
+        $fuelStatistics = FuelStatisticEloquent::search($request);
+        $fuelStatistics = FuelStatisticResource::collection($fuelStatistics);
 
-        dd($fuelStatistic);
-        return view('list');
+        return view('pages.fuel-statistic-list', compact('fuelStatistics'));
     }
 
 }

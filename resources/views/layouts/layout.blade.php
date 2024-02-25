@@ -12,14 +12,12 @@
     <link rel="stylesheet" href="{{ asset('media/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('media/css/app.css') }}">
     <meta name="google-signin-client_id" content="1040288155714-cdmfu44ddd0cnjuvergeuer7dfglfakh.apps.googleusercontent.com">
-
-
 </head>
 
 <body>
 
-{{--@include('components.layouts.header')--}}
 
+@include('components.layouts.header')
 <main>
     @yield('body')
 </main>

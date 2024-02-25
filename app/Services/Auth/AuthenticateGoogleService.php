@@ -16,7 +16,6 @@ class AuthenticateGoogleService
 {
     public function authGoogle(\Laravel\Socialite\Contracts\User $googleUser): User
     {
-//        dd($googleUser, $googleUser->token, $googleUser->user);
         $user = UserEloquent::findByEmail($googleUser->getEmail());
 
         if (!$user) {
@@ -26,7 +25,7 @@ class AuthenticateGoogleService
             $userEloquentDto->setPassword($googleUser->token);
             $user = UserEloquent::register($userEloquentDto);
         }
-        Auth::login($user, true);// Аутентификация пользователя в сессии
+        Auth::login($user, true);
         UserEloquent::updateGoogleUser($user, $googleUser);
 
         return $user;

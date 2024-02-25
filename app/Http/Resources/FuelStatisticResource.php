@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use App\Services\Math\FuelStatisticMath;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -33,9 +34,10 @@ class FuelStatisticResource extends JsonResource
             'traffic_jam_percentage' => $this->traffic_jam_percentage,
             'temperature' => $this->temperature,
             'description' => $this->description,
-            'created_at' => $this->created_at->format('Y-m-d H:i:s'),
-            'updated_at' => $this->updated_at->format('Y-m-d H:i:s'),
-            'tank_refill_time' => $this->tank_refill_time,
+//            'created_at' => $this->created_at->format('Y-m-d H:i:s'),
+//            'updated_at' => $this->updated_at->format('Y-m-d H:i:s'),
+//            'tank_refill_time' => $this->tank_refill_time,
+            'tank_refill_time' => Carbon::parse($this->tank_refill_time)->format('Y-m-d'),
         ];
     }
 }
