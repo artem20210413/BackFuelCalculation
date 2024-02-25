@@ -5,11 +5,13 @@ namespace App\Eloquent\FuelStatistic;
 use App\Eloquent\Eloquent;
 use App\Models\FuelStatistic;
 use App\Services\FuelStatistic\FuelStatisticFilterDto;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 
 class FuelStatisticEloquent extends Eloquent
@@ -91,6 +93,28 @@ class FuelStatisticEloquent extends Eloquent
         return FuelStatistic::findOrFail($id);
     }
 
+    public static function last(): FuelStatistic
+    {
+        $f = self::searchStart();
+        $f = self::searchByUser($f, Auth::user());
+        $f->orderByDesc('tank_refill_time');
+
+        return $f->first();
+    }
+
+    /**
+     * @param Carbon $startDate
+     * @param Carbon $endDate
+     * @return Collection|FuelStatistic[]
+     */
+    public static function period(Carbon $startDate, Carbon $endDate): Collection
+    {
+        $f = self::searchStart();
+        $f = self::searchByUser($f, Auth::user());
+        $f = self::searchByPeriod($f, $startDate, $endDate);
+
+        return $f->get();
+    }
 
 
     /** *************************** START SEARCH *************************** */
@@ -111,6 +135,17 @@ class FuelStatisticEloquent extends Eloquent
     private static function searchByUser(FuelStatistic|Builder $model, \App\Models\User $user): Builder
     {
         return $model->where('user_id', $user->id);
+    }
+
+    /**
+     * @param FuelStatistic|Builder $model
+     * @param Carbon $startDate
+     * @param Carbon $endDate
+     * @return Builder
+     */
+    private static function searchByPeriod(FuelStatistic|Builder $model, Carbon $startDate, Carbon $endDate): Builder
+    {
+        return $model->whereBetween('tank_refill_time', [$startDate, $endDate]);
     }
 
 

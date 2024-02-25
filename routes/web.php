@@ -28,9 +28,10 @@ Route::middleware(['guest'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/logout', [AuthController::class, 'attemptLogout'])->name('logout');
 
-    Route::redirect('/', '/fuel-statistic/list')->name('home');
+    Route::redirect('/', '/fuel-statistic/statistics')->name('home');
 
     Route::get('/fuel-statistic/form', [FuelStatisticController::class, 'form'])->name('fuel-statistic-form');
     Route::post('/fuel-statistic/form', [FuelStatisticController::class, 'formSend']);
     Route::get('/fuel-statistic/list', [FuelStatisticController::class, 'list'])->name('fuel-statistic-list');
+    Route::get('/fuel-statistic/statistics', [FuelStatisticController::class, 'statistics'])->name('fuel-statistic-statistics');
 });

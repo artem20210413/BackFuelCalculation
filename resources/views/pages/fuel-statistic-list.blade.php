@@ -15,7 +15,7 @@
 
     <div class="container mt-4 mb-4">
         <div class="d-flex justify-content-between p-2">
-            <h2>Статистика палива</h2>
+            <h2>Перелік</h2>
             <button type="button" class="btn btn-primary"
                     onclick=" window.location.href = '{{ route('fuel-statistic-form') }}'">Додати
             </button>

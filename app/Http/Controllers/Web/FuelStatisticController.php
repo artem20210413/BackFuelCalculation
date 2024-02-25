@@ -9,6 +9,7 @@ use App\Eloquent\GasStation\GasStationEloquent;
 use App\Eloquent\MovementType\MovementTypeEloquent;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\FuelStatisticRequest;
+use App\Http\Requests\StatisticsRequest;
 use App\Http\Resources\FuelStatisticResource;
 use App\Http\Resources\FuelTypeResource;
 use App\Services\FuelStatistic\FuelStatisticFilterDto;
@@ -47,6 +48,13 @@ class FuelStatisticController extends Controller
         $fuelStatistics = FuelStatisticResource::collection($fuelStatistics);
 
         return view('pages.fuel-statistic-list', compact('fuelStatistics'));
+    }
+
+    public function statistics(StatisticsRequest $request, FuelStatisticService $service)
+    {
+        $statistic = $service->statistics($request);
+
+        return view('pages.fuel-statistic-statistics', compact('statistic'));
     }
 
 }
