@@ -93,7 +93,7 @@ class FuelStatisticEloquent extends Eloquent
         return FuelStatistic::findOrFail($id);
     }
 
-    public static function last(): FuelStatistic
+    public static function last(): ?FuelStatistic
     {
         $f = self::searchStart();
         $f = self::searchByUser($f, Auth::user());
