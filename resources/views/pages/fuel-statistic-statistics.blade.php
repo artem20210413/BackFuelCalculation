@@ -43,9 +43,9 @@
             <form id="dateForm" class="row mt-3 mb-3">
                 <div class="form-group col-6">
                     <label for="start_date">З:</label>
-                    <input type="date" class="form-control @error('start_date') is-invalid @enderror"
+                    <input type="datetime-local" class="form-control @error('start_date') is-invalid @enderror"
                            name="start_date"
-                           value="{{ old('start_date', request()->input('start_date', now()->subDays(30)->toDateString())) }}">
+                           value="{{ old('start_date', request()->input('start_date', now()->subDays(30)->format('Y-m-d\TH:i'))) }}">
 
 
                     @error('start_date')
@@ -55,9 +55,9 @@
 
                 <div class="form-group col-6">
                     <label for="end_date">До:</label>
-                    <input type="date" class="form-control @error('end_date') is-invalid @enderror"
+                    <input type="datetime-local" class="form-control @error('end_date') is-invalid @enderror"
                            name="end_date"
-                           value="{{ old('end_date',request()->input('end_date', now()->toDateString())) }}">
+                           value="{{ old('end_date',request()->input('end_date', now()->format('Y-m-d\TH:i'))) }}">
                     @error('end_date')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
