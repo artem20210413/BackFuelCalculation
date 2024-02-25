@@ -20,7 +20,7 @@
 
             <div class="center mt-2 col-4">
                 <label class="form-label">Відстань</label>
-                <input required type="number" class="form-control @error('distance') is-invalid @enderror"
+                <input required type="text" pattern="[0-9]+([.,][0-9]+)?" class="form-control @error('distance') is-invalid @enderror"
                        name="distance" placeholder="123.4" value="{{ old('distance') }}">
                 @error('distance')
                 <div class="invalid-feedback">
@@ -31,7 +31,7 @@
 
             <div class="center mt-2 col-4">
                 <label class="form-label">Об'єм</label>
-                <input required type="number" class="form-control @error('volume') is-invalid @enderror"
+                <input required type="text" pattern="[0-9]+([.,][0-9]+)?" class="form-control @error('volume') is-invalid @enderror"
                        name="volume" placeholder="30" value="{{ old('volume') }}">
                 @error('volume')
                 <div class="invalid-feedback">
@@ -42,7 +42,7 @@
 
             <div class="center mt-2 col-4">
                 <label class="form-label">Цена</label>
-                <input required type="number" class="form-control @error('refill_amount') is-invalid @enderror"
+                <input required type="text" pattern="[0-9]+([.,][0-9]+)?" class="form-control @error('refill_amount') is-invalid @enderror"
                        name="refill_amount" placeholder="800.25" value="{{ old('refill_amount') }}">
                 @error('refill_amount')
                 <div class="invalid-feedback">
