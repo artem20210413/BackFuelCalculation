@@ -25,9 +25,10 @@
             @foreach(json_decode($fuelStatistics->toJson()) as $fuelStat)
                 <div class="card mb-4" style="width: 25rem;">
                     <div class="card-body row">
-                        <p class="card-text col-6"><b>Відстань:</b> {{ $fuelStat->distance }}</p>
-                        <p class="card-text col-6"><b>Обсяг:</b> {{ $fuelStat->volume }}</p>
-                        <p class="card-text"><b>Витрата палива:</b> {{ $fuelStat->fuel_consumption }}</p>
+                        <p class="card-text col-7"><b>Відстань:</b> {{ $fuelStat->distance }}</p>
+                        <p class="card-text col-5"><b>Обсяг:</b> {{ $fuelStat->volume }}</p>
+                        <p class="card-text col-7"><b>Витрата палива:</b> {{ $fuelStat->fuel_consumption }}</p>
+                        <p class="card-text col-5"><b>За літр:</b> {{ $fuelStat->price_per_one }}</p>
                         <p class="card-text"><b>Час заправки бака:</b> {{ $fuelStat->tank_refill_time }}</p>
                     </div>
                 </div>
