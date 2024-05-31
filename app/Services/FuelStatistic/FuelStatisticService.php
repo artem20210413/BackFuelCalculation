@@ -51,8 +51,8 @@ class FuelStatisticService
         $statistic->setAmountOfMoneySpent($listPeriod->sum('refill_amount'));
         $statistic->setCountOfKilometersTraveled($listPeriod->sum('distance'));
 
-        $last = FuelStatisticEloquent::last();
-        $statistic->setLastFillUp(new FuelStatisticResource($last));
+        if ($last = FuelStatisticEloquent::last())
+            $statistic->setLastFillUp(new FuelStatisticResource($last));
 
 
         return $statistic;

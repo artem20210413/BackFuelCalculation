@@ -22,22 +22,22 @@ class FuelStatisticResource extends JsonResource
         $pricePerOne = FuelStatisticMath::pricePerLiter($this->resource);
 
         return [
-            'id' => $this->id,
-            'distance' => $this->distance,
-            'volume' => $this->volume,
+            'id' => $this?->id,
+            'distance' => $this?->distance,
+            'volume' => $this?->volume,
             'fuel_consumption' => round($fuelConsumption, $mathRound),
-            'fuel_type_alias' => $this->fuel_type_alias,
-            'gas_station_alias' => $this->gas_station_alias,
-            'movement_type_alias' => $this->movement_type_alias,
-            'refill_amount' => $this->refill_amount,
+            'fuel_type_alias' => $this?->fuel_type_alias,
+            'gas_station_alias' => $this?->gas_station_alias,
+            'movement_type_alias' => $this?->movement_type_alias,
+            'refill_amount' => $this?->refill_amount,
             'price_per_one' => round($pricePerOne, $mathRound),
-            'traffic_jam_percentage' => $this->traffic_jam_percentage,
-            'temperature' => $this->temperature,
-            'description' => $this->description,
-//            'created_at' => $this->created_at->format('Y-m-d H:i:s'),
-//            'updated_at' => $this->updated_at->format('Y-m-d H:i:s'),
-//            'tank_refill_time' => $this->tank_refill_time,
-            'tank_refill_time' => Carbon::parse($this->tank_refill_time)->format('Y-m-d'),
+            'traffic_jam_percentage' => $this?->traffic_jam_percentage,
+            'temperature' => $this?->temperature,
+            'description' => $this?->description,
+//            'created_at' => $this?->created_at->format('Y-m-d H:i:s'),
+//            'updated_at' => $this?->updated_at->format('Y-m-d H:i:s'),
+//            'tank_refill_time' => $this?->tank_refill_time,
+            'tank_refill_time' => Carbon::parse($this?->tank_refill_time)->format('Y-m-d'),
         ];
     }
 }

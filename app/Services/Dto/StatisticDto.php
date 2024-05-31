@@ -85,7 +85,7 @@ class StatisticDto
     public function getLastFillUp(): mixed
     {
 //        return $this->lastFillUp;
-        return json_decode($this->lastFillUp->toJson());
+        return json_decode($this->lastFillUp?->toJson());
     }
 
     /**
