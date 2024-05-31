@@ -22,7 +22,7 @@
         </div>
         <div class="d-flex flex-wrap justify-content-around">
 
-            @foreach(json_decode($fuelStatistics->toJson()) as $fuelStat)
+            @foreach(json_decode($fuelStatistics?->toJson())??[] as $fuelStat)
                 <div class="card mb-4" style="width: 25rem;">
                     <div class="card-body row">
                         <p class="card-text col-7"><b>Відстань:</b> {{ $fuelStat->distance }}</p>

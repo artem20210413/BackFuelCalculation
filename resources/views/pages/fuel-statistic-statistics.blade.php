@@ -29,13 +29,13 @@
 
             <div class="card" style="width: 25rem;">
                 <div class="card-body row">
-                    <p class="card-text col-7"><b>Відстань:</b> {{ $statistic->getLastFillUp()->distance }}</p>
-                    <p class="card-text col-5"><b>Обсяг:</b> {{ $statistic->getLastFillUp()->volume }}</p>
+                    <p class="card-text col-7"><b>Відстань:</b> {{ $statistic?->getLastFillUp()->distance }}</p>
+                    <p class="card-text col-5"><b>Обсяг:</b> {{ $statistic?->getLastFillUp()->volume }}</p>
                     <p class="card-text col-7"><b>Витрата
-                            палива:</b> {{ $statistic->getLastFillUp()->fuel_consumption }}</p>
-                    <p class="card-text col-5"><b>За літр:</b> {{ $statistic->getLastFillUp()->price_per_one }}</p>
+                            палива:</b> {{ $statistic?->getLastFillUp()->fuel_consumption }}</p>
+                    <p class="card-text col-5"><b>За літр:</b> {{ $statistic?->getLastFillUp()->price_per_one }}</p>
                     <p class="card-text"><b>Час заправки
-                            бака:</b> {{ $statistic->getLastFillUp()->tank_refill_time }}</p>
+                            бака:</b> {{ $statistic?->getLastFillUp()->tank_refill_time }}</p>
                 </div>
             </div>
 
@@ -67,12 +67,12 @@
 
             <div class="card mb-4" style="width: 25rem;">
                 <div class="card-body row">
-                    <p class="card-text col-12"><b>Кількість заправок:</b> {{ $statistic->getCountOfRefills() }}</p>
+                    <p class="card-text col-12"><b>Кількість заправок:</b> {{ $statistic?->getCountOfRefills() }}</p>
                     <p class="card-text col-12"><b>Кількість заправлених
-                            літрів:</b> {{ $statistic->getCountOfFilledLiters() }}</p>
+                            літрів:</b> {{ $statistic?->getCountOfFilledLiters() }}</p>
                     <p class="card-text col-12"><b>Кількість проїдених
-                            км:</b> {{ $statistic->getCountOfKilometersTraveled() }}</p>
-                    <p class="card-text col-12"><b>Сума витрачених грошей:</b> {{ $statistic->getAmountOfMoneySpent() }}
+                            км:</b> {{ $statistic?->getCountOfKilometersTraveled() }}</p>
+                    <p class="card-text col-12"><b>Сума витрачених грошей:</b> {{ $statistic?->getAmountOfMoneySpent() }}
                     </p>
                 </div>
             </div>
